@@ -384,11 +384,12 @@ export class GameRoom {
     this.players.forEach(player => {
       if (!player.body || player.state !== 'alive') return;
       
-      const dx = player.body.position.x - map.bounds.cx;
-      const dy = player.body.position.y - map.bounds.cy;
+      const bounds = map.bounds;
+      const dx = player.body.position.x - bounds.cx;
+      const dy = player.body.position.y - bounds.cy;
       const dist = Math.sqrt(dx * dx + dy * dy);
       
-      if (dist > map.bounds.r + PHYSICS.KO_DISTANCE_THRESHOLD) {
+      if (bounds.type === 'circle' && dist > bounds.r + PHYSICS.KO_DISTANCE_THRESHOLD) {
         player.state = 'ko';
         player.lives--;
         player.koTime = Date.now();

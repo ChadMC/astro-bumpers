@@ -90,7 +90,7 @@ export class LobbyScene extends Phaser.Scene {
   }
   
   private async generateQR() {
-    const httpOrigin = import.meta.env.VITE_HTTP_ORIGIN || 'http://localhost:8787';
+    const httpOrigin = (import.meta as any).env?.VITE_HTTP_ORIGIN || 'http://localhost:8787';
     const controllerUrl = `${httpOrigin.replace('8787', '5174')}/?room=${this.roomCode}`;
     
     try {

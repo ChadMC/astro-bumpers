@@ -100,6 +100,5 @@ export class GameScene extends Phaser.Scene {
   
   shutdown() {
     this.musicControl?.stop();
-    super.shutdown();
   }
 }

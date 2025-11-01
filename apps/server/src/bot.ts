@@ -38,7 +38,9 @@ export class Bot {
   private updateTarget(body: Matter.Body, world: Matter.World, players: any[]): void {
     // Find nearest opponent
     let nearestDist = Infinity;
-    let nearestPos: Matter.Vector | null = null;
+    let targetX = 0;
+    let targetY = 0;
+    let foundTarget = false;
     
     players.forEach(p => {
       if (p.id === this.id || !p.body || p.state !== 'alive') return;
@@ -49,14 +51,16 @@ export class Bot {
       
       if (dist < nearestDist) {
         nearestDist = dist;
-        nearestPos = p.body.position;
+        targetX = p.body.position.x;
+        targetY = p.body.position.y;
+        foundTarget = true;
       }
     });
     
-    if (nearestPos) {
+    if (foundTarget) {
       // Aim at nearest opponent
-      const dx = nearestPos.x - body.position.x;
-      const dy = nearestPos.y - body.position.y;
+      const dx = targetX - body.position.x;
+      const dy = targetY - body.position.y;
       this.targetAngle = Math.atan2(dy, dx);
     } else {
       // Head toward center

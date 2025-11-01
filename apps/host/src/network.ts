@@ -1,7 +1,7 @@
 import { io, Socket } from 'socket.io-client';
 import type { RoomSummary, Snapshot, Welcome } from '@astro-bumpers/common';
 
-const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8787/game';
+const WS_URL = (import.meta as any).env?.VITE_WS_URL || 'ws://localhost:8787/game';
 
 export class NetworkManager {
   private socket: Socket | null = null;
