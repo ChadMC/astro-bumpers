@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm --filter @astro-bumpers/icongen build && pnpm -r --filter './packages/**' --filter '!@astro-bumpers/icongen' build && pnpm -r --parallel --filter './apps/**' dev",
-    "build": "pnpm --filter @astro-bumpers/icongen build && pnpm -r --filter './packages/**' build && pnpm -r --filter './apps/**' build",
+    "dev": "pnpm build:packages && pnpm -r --parallel --filter './apps/**' dev",
+    "build": "pnpm build:packages && pnpm -r --filter './apps/**' build",
+    "build:packages": "pnpm --filter @astro-bumpers/icongen build && pnpm -r --filter './packages/**' --filter '!@astro-bumpers/icongen' build",
     "clean": "pnpm -r exec rm -rf dist node_modules .turbo",
     "typecheck": "pnpm -r --filter './apps/**' --filter './packages/**' typecheck"
   },
