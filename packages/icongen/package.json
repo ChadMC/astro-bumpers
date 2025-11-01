@@ -1,0 +1,17 @@
+{
+  "name": "@astro-bumpers/icongen",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node --loader ts-node/esm src/generate.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.45"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
