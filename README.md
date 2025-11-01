@@ -505,18 +505,12 @@ export function startMusic(ctx: AudioContext): { stop:()=>void } { /* ... */ }
 ### Install & Run
 
 ```bash
+# Install dependencies
 pnpm i
 
-# Generate PWA icons (no source images needed)
-pnpm --filter @astro-bumpers/icongen build
-
 # Run all three in watch mode (server, host, controller)
+# This will automatically build icongen and all packages first
 pnpm dev
-
-# Alternatively:
-pnpm --filter @astro-bumpers/server dev
-pnpm --filter @astro-bumpers/host dev
-pnpm --filter @astro-bumpers/controller dev
 ```
 
 * Server listens on `http://localhost:8787`.
@@ -524,6 +518,12 @@ pnpm --filter @astro-bumpers/controller dev
 * Controller UI on `http://localhost:5174` (env points to server).
 
 Open **Host** on desktop/TV, create room → scan QR with phone to join.
+
+**Note:** The `pnpm dev` command automatically builds all required packages (icongen, common, synth, procedural-gfx) before starting the development servers. If you need to run apps individually, first build the packages with `pnpm --filter './packages/**' build`.
+
+#### Common Issues
+
+* **Typo in command:** Make sure to use `pnpm dev` (not `pnpn dev` or `npm dev`). This is a pnpm monorepo and requires pnpm ≥ 9.
 
 ### Environment Variables
 
