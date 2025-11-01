@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Astro Bumpers Controller</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+      background: #0a0f1e;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #ffffff;
+      overflow: hidden;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    
+    #app {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+    
+    /* Connect Screen */
+    #connect-screen {
+      text-align: center;
+      padding: 20px;
+    }
+    
+    #connect-screen h1 {
+      font-size: 48px;
+      color: #58d7ff;
+      margin-bottom: 40px;
+    }
+    
+    #connect-screen input {
+      font-size: 32px;
+      padding: 20px;
+      margin: 10px;
+      border: 3px solid #58d7ff;
+      background: #1b2550;
+      color: #ffffff;
+      border-radius: 10px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    
+    #connect-screen button {
+      font-size: 32px;
+      padding: 20px 60px;
+      margin: 20px;
+      background: #58d7ff;
+      color: #0a0f1e;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    /* Control Screen */
+    #control-screen {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    #hud {
+      height: 80px;
+      background: rgba(27, 37, 80, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 10px;
+    }
+    
+    #controls {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+    
+    .control-btn {
+      flex: 1;
+      border-radius: 20px;
+      font-size: 48px;
+      font-weight: bold;
+      border: 4px solid #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+    }
+    
+    #left-btn {
+      background: #ff5a8a;
+    }
+    
+    #right-btn {
+      background: #58d7ff;
+    }
+    
+    #boost-btn {
+      background: #ffd262;
+      color: #0a0f1e;
+    }
+    
+    .control-btn.active {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Connect Screen -->
+    <div id="connect-screen">
+      <h1>🚀 ASTRO BUMPERS</h1>
+      <div>
+        <input type="text" id="nickname-input" placeholder="Nickname" maxlength="20" value="Player">
+      </div>
+      <div>
+        <input type="text" id="room-input" placeholder="Room Code" maxlength="4">
+      </div>
+      <div>
+        <button id="join-btn">JOIN</button>
+      </div>
+      <p id="error-msg" style="color: #ff3b3b; margin-top: 20px;"></p>
+    </div>
+    
+    <!-- Control Screen -->
+    <div id="control-screen" class="hidden">
+      <div id="hud">
+        <div id="lives">❤️❤️❤️</div>
+        <div id="powerup"></div>
+      </div>
+      <div id="controls">
+        <div class="control-btn" id="left-btn">◀</div>
+        <div class="control-btn" id="boost-btn">⚡</div>
+        <div class="control-btn" id="right-btn">▶</div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
